@@ -183,8 +183,12 @@ export default function Reminders() {
   };
 
   const scheduleReminder = async () => {
-    if (!title || !message || !scheduledTime) return alert("Fill in all fields");
+    if (!title || !message || !scheduledTime) {
+      setFeedback("❌ Fill in subject, message, and schedule time first.");
+      return;
+    }
     setSending("schedule");
+    setFeedback("⏳ Sending schedule request...");
     try {
       const res = await fetch(`${BACKEND}/api/reminders/schedule`, {
         method: "POST",
@@ -192,12 +196,16 @@ export default function Reminders() {
         body: JSON.stringify({ subject: title, message, to: "cyrrilann@gmail.com", scheduledTime }),
       });
       const data = await res.json();
-      alert("SENT scheduledTime: " + scheduledTime + "\n\nRESPONSE: " + JSON.stringify(data));
       if (res.ok) {
-        setFeedback(`✅ Scheduled for ${new Date(scheduledTime).toLocaleString()}`);
+        setFeedback(`✅ Scheduled! Sent value: "${scheduledTime}" | Server will send at: ${data.willSendAt || "?"} | Delay: ${data.delaySeconds}s`);
+        saveLocal([{ id: Date.now(), title: `${title} (scheduled)`, sentAt: `Will send at ${data.willSendAt || scheduledTime}` }, ...reminders]);
         setTitle(""); setMessage(""); setScheduledTime("");
-      } else setFeedback("❌ Failed to schedule: " + JSON.stringify(data));
-    } catch (err) { setFeedback("❌ Could not connect to backend: " + err.message); }
+      } else {
+        setFeedback(`❌ Failed to schedule: ${JSON.stringify(data)}`);
+      }
+    } catch (err) {
+      setFeedback(`❌ Network error: ${err.message}`);
+    }
     setSending(null);
   };
 
