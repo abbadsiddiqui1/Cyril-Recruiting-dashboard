@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
 
 @RestController
 @RequestMapping("/api/reminders")
-@CrossOrigin(origins = {"http://localhost:5173", "https://*.vercel.app"})
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class ReminderController {
 
     @Autowired
@@ -22,7 +22,6 @@ public class ReminderController {
 
     private final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(5);
 
-    // Plain text email
     @PostMapping("/send")
     public ResponseEntity<?> sendNow(@RequestBody Map<String, String> req) {
         try {
@@ -37,7 +36,6 @@ public class ReminderController {
         }
     }
 
-    // HTML email
     @PostMapping("/send-html")
     public ResponseEntity<?> sendHtml(@RequestBody Map<String, String> req) {
         try {
@@ -56,7 +54,6 @@ public class ReminderController {
         }
     }
 
-    // Schedule a plain text reminder
     @PostMapping("/schedule")
     public ResponseEntity<?> schedule(@RequestBody Map<String, String> req) {
         try {
