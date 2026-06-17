@@ -12,9 +12,20 @@ Built for my own Summer 2027 recruiting grind — feel free to fork and make it 
 - 💻 **NeetCode 150 Tracker** — Track all 150 NeetCode problems, mark mastered/in progress, add pattern notes
 - 📝 **Notes** — Capture DSA patterns, ideas, follow-ups by tag
 - 🔗 **Links** — Save important career/DSA/project links
-- 🌡️ **Mood Tracker** — Daily check-ins lol this just to check the vibe lol
-- 🔔 **Reminders** — Send yourself  HTML email reminders, schedule future ones - this will help with companies alerts 
-- 📧 **Auto Emails** — Daily NeetCode reminder (9am ET) + Weekly digest (Monday 8am ET)- This contains the companies you put and neetcode 150 track.
+- 🌡️ **Mood Tracker** — Daily check-ins
+- 🔔 **Reminders** — Send yourself rich HTML email reminders, schedule future ones
+- 📧 **Auto Emails** — Daily NeetCode reminder (9am ET) + Weekly digest (Monday 8am ET)
+
+## Screenshots
+
+**Overview** — your daily snapshot: applied/interviews/offers, what's opening soon, top priority companies, and NeetCode progress at a glance.
+![Overview](screenshots/overview.png)
+
+**Career Tracker** — every company in one table, with status checkboxes, countdown to opening, priority stars, and editable notes.
+![Career Tracker](screenshots/career-tracker.png)
+
+**NeetCode 150 Tracker** — all 150 problems organized by section, with progress bars and per-problem pattern notes.
+![NeetCode 150](screenshots/neetcode-tracker.png)
 
 ## What this isn't
 This is a personal tool, not a SaaS product. There's no multi-user login, no real database (everything lives in your browser's localStorage), and email scheduling is in-memory (resets if the backend restarts). If you want something more robust, fork it and build on top — that's the whole point.
@@ -35,7 +46,7 @@ Before running, update these to match your info:
 - `backend/src/main/java/com/dashboard/scheduler/WeeklyDigestScheduler.java`
 - `frontend/src/components/Reminders.jsx`
 
-**2. Your companies** — `frontend/src/data/companies.js` has 100 companies pre-loaded for a NYC CS student. Clear them out and add your own targets with links so its easier to search and click, or keep them as a starting point.
+**2. Your companies** — `frontend/src/data/companies.js` has 100 companies pre-loaded for a NYC CS student. Clear them out and add your own targets, or keep them as a starting point.
 
 **3. Your NeetCode progress** — same file (`companies.js`), scroll to the `NEETCODE_150` export. It follows the official NeetCode 150 list with correct LeetCode problem numbers. Update each `status` field to reflect what you've already solved: `"not started"`, `"in progress"`, or `"mastered"`.
 
@@ -113,7 +124,7 @@ Email scheduling uses an in-memory scheduler — scheduled reminders are lost if
 ---
 
 ## License
-This project is released under the **MIT License** — a standard open-source license that means: you're free to use, copy, modify, and distribute this code for any purpose, including commercially, with no restrictions. The only requirement is that the original copyright notice stays in the code somewhere. In plain terms: do whatever you want with it, no permission needed. A LinkedIn tag is appreciated but not required"Cyril Annoh". GOODLUCK ON BECOMING AN ENGINEER👨‍💻
+This project is released under the **MIT License** — a standard open-source license that means: you're free to use, copy, modify, and distribute this code for any purpose, including commercially, with no restrictions. The only requirement is that the original copyright notice stays in the code somewhere. In plain terms: do whatever you want with it, no permission needed. A LinkedIn tag is appreciated but not required.
 
 *Built by Cyril Annoh · NYC College of Technology (CUNY) · CS Student · Bronx, NY*
 *Questions or stuck on setup? Message me on [LinkedIn](https://www.linkedin.com/in/cyril-annoh/) — happy to help.*
