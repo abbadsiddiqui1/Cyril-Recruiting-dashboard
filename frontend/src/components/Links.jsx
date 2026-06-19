@@ -1,13 +1,11 @@
 import { useState } from "react";
 
 const DEFAULT_LINKS = [
-  { id: 1, title: "PathPilot (Live)", url: "https://path-pilot-rho.vercel.app", category: "Projects", notes: "Your deployed app" },
-  { id: 2, title: "PathPilot GitHub", url: "https://github.com/Cyrila7/PathPilot", category: "Projects", notes: "" },
   { id: 3, title: "NeetCode 150", url: "https://neetcode.io/roadmap", category: "DSA", notes: "Main DSA roadmap" },
   { id: 4, title: "LeetCode", url: "https://leetcode.com", category: "DSA", notes: "" },
-  { id: 5, title: "SimplifyJobs Summer 2027", url: "https://github.com/SimplifyJobs/Summer2027-Internships", category: "Jobs", notes: "Updated daily — bookmark this" },
+  { id: 5, title: "Intern List", url: "https://www.intern-list.com", category: "Jobs", notes: "Curated internship listings" },
+  { id: 11, title: "InternDB", url: "https://interndb.io", category: "Jobs", notes: "Real internship reviews — salaries, interview process, interview questions" },
   { id: 6, title: "CUNYStartups", url: "https://cunystartups.com/accelerator", category: "Programs", notes: "NVA 2 opens Fall 2026" },
-  { id: 7, title: "Neo Scholars", url: "https://neo.com/scholars", category: "Programs", notes: "Applied June 14" },
   { id: 8, title: "IBM AI Challenge", url: "https://ibmskillsbuildchallenge.bemyapp.com", category: "Programs", notes: "July & August sprints" },
   { id: 9, title: "Google Careers", url: "https://careers.google.com/jobs/results/?category=ENGINEERING", category: "Jobs", notes: "Opens Aug-Sep 2026" },
   { id: 10, title: "Bloomberg Careers", url: "https://bloomberg.com/company/careers/working-here/engineering", category: "Jobs", notes: "Opens July — priority" },
