@@ -12,7 +12,7 @@ export default function Sidebar({ active, setActive }) {
   return (
     <nav className="sidebar">
       <div className="sidebar-logo">
-        <h1>Cyril<span>HQ</span></h1>
+        <h1>Internship<span>Tracker</span></h1>
         <p>Your command center</p>
       </div>
       {NAV.map((n) => (

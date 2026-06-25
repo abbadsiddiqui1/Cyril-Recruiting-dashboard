@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { moodApi } from "../api";
 
 const MOODS = [
   { emoji: "🔥", label: "In the zone", value: 5 },
@@ -9,21 +10,33 @@ const MOODS = [
 ];
 
 export default function MoodTracker() {
-  const [logs, setLogs] = useState(() => JSON.parse(localStorage.getItem("mood") || "[]"));
+  const [logs, setLogs] = useState([]);
+  const [error, setError] = useState("");
   const [selected, setSelected] = useState(null);
   const [note, setNote] = useState("");
 
-  const save = (u) => { setLogs(u); localStorage.setItem("mood", JSON.stringify(u)); };
+  // Load mood check-ins from the backend on mount. Newest first.
+  useEffect(() => {
+    moodApi.list()
+      .then((data) => setLogs([...data].reverse()))
+      .catch(() => setError("Couldn't load mood logs — is the backend running on :8080?"));
+  }, []);
 
-  const logMood = () => {
+  const logMood = async () => {
     if (!selected) return;
     const today = new Date().toLocaleDateString();
-    const entry = { id: Date.now(), date: today, mood: selected, note };
-    save([entry, ...logs]);
-    setSelected(null); setNote("");
+    try {
+      const saved = await moodApi.create({ date: today, mood: selected, note });
+      setLogs((ls) => [saved, ...ls]);
+      setSelected(null); setNote("");
+    } catch { setError("Save failed — entry may not be persisted."); }
   };
 
-  const del = (id) => save(logs.filter((l) => l.id !== id));
+  const del = async (id) => {
+    setLogs((ls) => ls.filter((l) => l.id !== id));
+    try { await moodApi.remove(id); }
+    catch { setError("Delete failed."); }
+  };
 
   const avg = logs.length ? (logs.slice(0, 7).reduce((s, l) => s + l.mood.value, 0) / Math.min(logs.length, 7)).toFixed(1) : "—";
 
@@ -33,6 +46,8 @@ export default function MoodTracker() {
         <h2>🌡️ Mood Tracker</h2>
         <p>7-day average: {avg} · {logs.length} entries total</p>
       </div>
+
+      {error && <div className="card mb-16" style={{ borderColor: "var(--red)", color: "var(--red)", fontSize: 13 }}>{error}</div>}
 
       <div className="grid-2 gap-16">
         {/* Log mood */}

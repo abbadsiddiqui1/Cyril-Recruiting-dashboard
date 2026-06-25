@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { reminderLogApi } from "../api";
 
 const BACKEND = import.meta.env.VITE_BACKEND_URL || "http://localhost:8080";
 
@@ -76,7 +77,7 @@ const QUICK_REMINDERS = [
             □ Apply to any companies that just opened<br>
             □ Do 5+ NeetCode problems<br>
             □ Follow up on pending applications (2+ weeks old)<br>
-            □ Update your CyrilHQ tracker
+            □ Update your InternshipTracker tracker
           </p>
         </div>
         <div style="margin-bottom:8px;"><a href="https://github.com/SimplifyJobs/Summer2027-Internships" style="display:block;background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;padding:10px 16px;text-decoration:none;color:#e8e8f0;font-size:13px;font-weight:600;">SimplifyJobs Summer 2027 Tracker <span style="color:#6c63ff;">→</span></a></div>
@@ -140,8 +141,7 @@ const QUICK_REMINDERS = [
             Application intelligence + peer networks. Not just AI advice — honest company recommendations ranked by realistic hire rate from your school and stack, paired with warm connections to students who already got in.
           </p>
         </div>
-        <div style="margin-bottom:8px;"><a href="https://path-pilot-rho.vercel.app" style="display:block;background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;padding:10px 16px;text-decoration:none;color:#e8e8f0;font-size:13px;font-weight:600;">PathPilot Live App <span style="color:#6c63ff;">→</span></a></div>
-        <div style="margin-bottom:16px;"><a href="https://github.com/Cyrila7/PathPilot" style="display:block;background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;padding:10px 16px;text-decoration:none;color:#e8e8f0;font-size:13px;font-weight:600;">PathPilot GitHub <span style="color:#6c63ff;">→</span></a></div>
+        <div style="margin-bottom:16px;"><a href="https://path-pilot-rho.vercel.app" style="display:block;background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;padding:10px 16px;text-decoration:none;color:#e8e8f0;font-size:13px;font-weight:600;">PathPilot Live App <span style="color:#6c63ff;">→</span></a></div>
         <div style="background:#ff658422;border:1px solid #ff658444;border-radius:8px;padding:14px;text-align:center;">
           <p style="margin:0;color:#ff9fb4;font-size:13px;">Ship something today. Even small. Momentum is everything.</p>
         </div>
@@ -150,7 +150,7 @@ const QUICK_REMINDERS = [
 ];
 
 export default function Reminders() {
-  const [reminders, setReminders] = useState(() => JSON.parse(localStorage.getItem("reminders") || "[]"));
+  const [reminders, setReminders] = useState([]);
   const [title, setTitle] = useState("");
   const [message, setMessage] = useState("");
   const [scheduleDate, setScheduleDate] = useState("");
@@ -160,7 +160,20 @@ export default function Reminders() {
   const [sending, setSending] = useState(null);
   const [feedback, setFeedback] = useState("");
 
-  const saveLocal = (u) => { setReminders(u); localStorage.setItem("reminders", JSON.stringify(u)); };
+  // Load the sent/scheduled history from the backend on mount. Newest first.
+  useEffect(() => {
+    reminderLogApi.list()
+      .then((data) => setReminders([...data].reverse()))
+      .catch(() => {});   // history is non-critical; ignore load errors
+  }, []);
+
+  // Persist one history entry and prepend it to the list.
+  const logReminder = async (title, sentAt) => {
+    try {
+      const saved = await reminderLogApi.create({ title, sentAt });
+      setReminders((rs) => [saved, ...rs]);
+    } catch { /* history is non-critical */ }
+  };
 
   const sendHtml = async (r) => {
     setSending(r.label);
@@ -169,11 +182,11 @@ export default function Reminders() {
       const res = await fetch(`${BACKEND}/api/reminders/send-html`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ subject: r.subject, html: r.html, to: "cyrrilann@gmail.com" }),
+        body: JSON.stringify({ subject: r.subject, html: r.html, to: "abbadsiddiqui1@gmail.com" }),
       });
       if (res.ok) {
-        setFeedback("✅ Email sent to cyrrilann@gmail.com!");
-        saveLocal([{ id: Date.now(), title: r.label, sentAt: new Date().toLocaleString() }, ...reminders]);
+        setFeedback("✅ Email sent to abbadsiddiqui1@gmail.com!");
+        logReminder(r.label, new Date().toLocaleString());
       } else {
         setFeedback("❌ Failed to send. Check backend logs.");
       }
@@ -190,12 +203,12 @@ export default function Reminders() {
       const res = await fetch(`${BACKEND}/api/reminders/send`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ subject: title, message, to: "cyrrilann@gmail.com" }),
+        body: JSON.stringify({ subject: title, message, to: "abbadsiddiqui1@gmail.com" }),
       });
       if (res.ok) {
         setFeedback("✅ Custom reminder sent!");
         setTitle(""); setMessage("");
-        saveLocal([{ id: Date.now(), title, sentAt: new Date().toLocaleString() }, ...reminders]);
+        logReminder(title, new Date().toLocaleString());
       } else setFeedback("❌ Failed to send.");
     } catch { setFeedback("❌ Could not connect to backend."); }
     setSending(null);
@@ -222,12 +235,12 @@ export default function Reminders() {
       const res = await fetch(`${BACKEND}/api/reminders/schedule`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ subject: title, message, to: "cyrrilann@gmail.com", scheduledTime }),
+        body: JSON.stringify({ subject: title, message, to: "abbadsiddiqui1@gmail.com", scheduledTime }),
       });
       const data = await res.json();
       if (res.ok) {
         setFeedback(`✅ Scheduled! Sent value: "${scheduledTime}" | Server will send at: ${data.willSendAt || "?"} | Delay: ${data.delaySeconds}s`);
-        saveLocal([{ id: Date.now(), title: `${title} (scheduled)`, sentAt: `Will send at ${data.willSendAt || scheduledTime}` }, ...reminders]);
+        logReminder(`${title} (scheduled)`, `Will send at ${data.willSendAt || scheduledTime}`);
         setTitle(""); setMessage(""); setScheduleDate(""); setScheduleHour(""); setScheduleMinute(""); setScheduleAmPm("PM");
       } else {
         setFeedback(`❌ Failed to schedule: ${JSON.stringify(data)}`);
@@ -242,7 +255,7 @@ export default function Reminders() {
     <div>
       <div className="page-header">
         <h2>🔔 Reminders</h2>
-        <p>Email reminders sent to cyrrilann@gmail.com · Auto: Daily 9am + Weekly Monday 8am</p>
+        <p>Email reminders sent to abbadsiddiqui1@gmail.com · Auto: Daily 9am + Weekly Monday 8am</p>
       </div>
 
       {feedback && (

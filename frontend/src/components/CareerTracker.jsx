@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { COMPANIES } from "../data/companies";
+import { useState, useEffect } from "react";
+import { companiesApi } from "../api";
 
 function daysUntil(dateStr) {
   const today = new Date(); today.setHours(0,0,0,0);
@@ -57,7 +57,7 @@ function exportToCSV(rows) {
   const link = document.createElement("a");
   const today = new Date().toISOString().split("T")[0];
   link.href = url;
-  link.download = `cyrilhq-companies-${today}.csv`;
+  link.download = `internshiptracker-companies-${today}.csv`;
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
@@ -65,10 +65,8 @@ function exportToCSV(rows) {
 }
 
 export default function CareerTracker() {
-  const [companies, setCompanies] = useState(() => {
-    const s = localStorage.getItem("companies");
-    return s ? JSON.parse(s) : COMPANIES;
-  });
+  const [companies, setCompanies] = useState([]);
+  const [error, setError] = useState("");
   const [tier, setTier] = useState("All");
   const [status, setStatus] = useState("All");
   const [search, setSearch] = useState("");
@@ -76,34 +74,51 @@ export default function CareerTracker() {
   const [form, setForm] = useState(BLANK);
   const [editId, setEditId] = useState(null);
 
-  const save = (updated) => {
-    setCompanies(updated);
-    localStorage.setItem("companies", JSON.stringify(updated));
+  // Load from the backend on mount (replaces the old localStorage seed).
+  useEffect(() => {
+    companiesApi.list()
+      .then(setCompanies)
+      .catch(() => setError("Couldn't load companies — is the backend running on :8080?"));
+  }, []);
+
+  // Persist a single changed company, updating local state optimistically.
+  const persist = async (updated) => {
+    setCompanies((cs) => cs.map((c) => c.id === updated.id ? updated : c));
+    try { await companiesApi.update(updated.id, updated); }
+    catch { setError("Save failed — change may not be persisted."); }
   };
 
   const toggle = (id, field) => {
-    save(companies.map((c) => c.id === id ? { ...c, [field]: !c[field] } : c));
+    const c = companies.find((x) => x.id === id);
+    if (c) persist({ ...c, [field]: !c[field] });
   };
 
   const setResult = (id, val) => {
-    save(companies.map((c) => c.id === id ? { ...c, result: val } : c));
+    const c = companies.find((x) => x.id === id);
+    if (c) persist({ ...c, result: val });
   };
 
-  const deleteCompany = (id) => {
-    if (confirm("Delete this company?")) save(companies.filter((c) => c.id !== id));
+  const deleteCompany = async (id) => {
+    if (!confirm("Delete this company?")) return;
+    setCompanies((cs) => cs.filter((c) => c.id !== id));
+    try { await companiesApi.remove(id); }
+    catch { setError("Delete failed."); }
   };
 
-  const submitForm = () => {
+  const submitForm = async () => {
     if (!form.company.trim()) return alert("Company name required");
-    if (editId !== null) {
-      save(companies.map((c) => c.id === editId ? { ...form, id: editId } : c));
-      setEditId(null);
-    } else {
-      const newId = Math.max(...companies.map((c) => c.id)) + 1;
-      save([...companies, { ...form, id: newId }]);
-    }
-    setForm(BLANK);
-    setShowAdd(false);
+    try {
+      if (editId !== null) {
+        const saved = await companiesApi.update(editId, { ...form, id: editId });
+        setCompanies((cs) => cs.map((c) => c.id === editId ? saved : c));
+        setEditId(null);
+      } else {
+        const saved = await companiesApi.create(form);
+        setCompanies((cs) => [...cs, saved]);
+      }
+      setForm(BLANK);
+      setShowAdd(false);
+    } catch { setError("Save failed — company may not be persisted."); }
   };
 
   const startEdit = (c) => {
@@ -138,6 +153,8 @@ export default function CareerTracker() {
           <button className="btn btn-primary" onClick={() => { setForm(BLANK); setEditId(null); setShowAdd(true); }}>+ Add Company</button>
         </div>
       </div>
+
+      {error && <div className="card mb-16" style={{ borderColor: "var(--red)", color: "var(--red)", fontSize: 13 }}>{error}</div>}
 
       {/* Add/Edit Modal */}
       {showAdd && (

@@ -1,35 +1,42 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { linksApi } from "../api";
 
-const DEFAULT_LINKS = [
-  { id: 3, title: "NeetCode 150", url: "https://neetcode.io/roadmap", category: "DSA", notes: "Main DSA roadmap" },
-  { id: 4, title: "LeetCode", url: "https://leetcode.com", category: "DSA", notes: "" },
-  { id: 5, title: "Intern List", url: "https://www.intern-list.com", category: "Jobs", notes: "Curated internship listings" },
-  { id: 11, title: "InternDB", url: "https://interndb.io", category: "Jobs", notes: "Real internship reviews — salaries, interview process, interview questions" },
-  { id: 6, title: "CUNYStartups", url: "https://cunystartups.com/accelerator", category: "Programs", notes: "NVA 2 opens Fall 2026" },
-  { id: 8, title: "IBM AI Challenge", url: "https://ibmskillsbuildchallenge.bemyapp.com", category: "Programs", notes: "July & August sprints" },
-  { id: 9, title: "Google Careers", url: "https://careers.google.com/jobs/results/?category=ENGINEERING", category: "Jobs", notes: "Opens Aug-Sep 2026" },
-  { id: 10, title: "Bloomberg Careers", url: "https://bloomberg.com/company/careers/working-here/engineering", category: "Jobs", notes: "Opens July — priority" },
-];
+// Default links now live in the backend seed (resources/seed/links.json) and are
+// loaded into the DB on first run.
 
 const CATS = ["All", "Projects", "DSA", "Jobs", "Programs", "Other"];
 
 export default function Links() {
-  const [links, setLinks] = useState(() => JSON.parse(localStorage.getItem("links") || JSON.stringify(DEFAULT_LINKS)));
+  const [links, setLinks] = useState([]);
+  const [error, setError] = useState("");
   const [cat, setCat] = useState("All");
   const [form, setForm] = useState({ title: "", url: "", category: "Jobs", notes: "" });
   const [search, setSearch] = useState("");
 
-  const save = (u) => { setLinks(u); localStorage.setItem("links", JSON.stringify(u)); };
+  // Load links from the backend on mount. Newest first.
+  useEffect(() => {
+    linksApi.list()
+      .then((data) => setLinks([...data].reverse()))
+      .catch(() => setError("Couldn't load links — is the backend running on :8080?"));
+  }, []);
 
-  const add = () => {
+  const add = async () => {
     if (!form.title || !form.url) return alert("Title and URL required");
     let url = form.url;
     if (!url.startsWith("http")) url = "https://" + url;
-    save([{ ...form, url, id: Date.now() }, ...links]);
-    setForm({ title: "", url: "", category: "Jobs", notes: "" });
+    try {
+      const saved = await linksApi.create({ ...form, url });
+      setLinks((ls) => [saved, ...ls]);
+      setForm({ title: "", url: "", category: "Jobs", notes: "" });
+    } catch { setError("Save failed — link may not be persisted."); }
   };
 
-  const del = (id) => { if (confirm("Remove link?")) save(links.filter((l) => l.id !== id)); };
+  const del = async (id) => {
+    if (!confirm("Remove link?")) return;
+    setLinks((ls) => ls.filter((l) => l.id !== id));
+    try { await linksApi.remove(id); }
+    catch { setError("Delete failed."); }
+  };
 
   const filtered = links.filter((l) => {
     if (cat !== "All" && l.category !== cat) return false;
@@ -43,6 +50,8 @@ export default function Links() {
         <h2>🔗 Links</h2>
         <p>{links.length} saved links</p>
       </div>
+
+      {error && <div className="card mb-16" style={{ borderColor: "var(--red)", color: "var(--red)", fontSize: 13 }}>{error}</div>}
 
       {/* Add link */}
       <div className="card mb-16">
