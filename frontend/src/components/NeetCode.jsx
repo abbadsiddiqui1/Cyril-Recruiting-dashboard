@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { NEETCODE_150 } from "../data/companies";
+import { useState, useEffect } from "react";
+import { neetcodeApi } from "../api";
 
 const SECTIONS = ["All", "Arrays & Hashing", "Two Pointers", "Sliding Window", "Stack", "Binary Search", "Linked List", "Trees", "Tries", "Heap / Priority Queue", "Backtracking", "Graphs", "Advanced Graphs", "1-D Dynamic Programming", "2-D Dynamic Programming", "Greedy", "Intervals", "Math & Geometry", "Bit Manipulation"];
 const STATUSES = ["not started", "in progress", "mastered"];
@@ -7,29 +7,36 @@ const STATUS_COLORS = { "not started": "var(--muted)", "in progress": "var(--yel
 const DIFF_COLORS = { Easy: "var(--green)", Medium: "var(--yellow)", Hard: "var(--red)" };
 
 export default function NeetCode() {
-  const [problems, setProblems] = useState(() => {
-    const s = localStorage.getItem("neetcode");
-    return s ? JSON.parse(s) : NEETCODE_150;
-  });
+  const [problems, setProblems] = useState([]);
+  const [error, setError] = useState("");
   const [section, setSection] = useState("All");
   const [editingNote, setEditingNote] = useState(null);
   const [noteText, setNoteText] = useState("");
 
-  const save = (updated) => {
-    setProblems(updated);
-    localStorage.setItem("neetcode", JSON.stringify(updated));
+  // Load the 150 problems from the backend on mount.
+  useEffect(() => {
+    neetcodeApi.list()
+      .then(setProblems)
+      .catch(() => setError("Couldn't load NeetCode problems — is the backend running on :8080?"));
+  }, []);
+
+  // Persist a single changed problem, updating local state optimistically.
+  const persist = async (updated) => {
+    setProblems((ps) => ps.map((p) => p.id === updated.id ? updated : p));
+    try { await neetcodeApi.update(updated.id, updated); }
+    catch { setError("Save failed — change may not be persisted."); }
   };
 
   const cycleStatus = (id) => {
-    save(problems.map((p) => {
-      if (p.id !== id) return p;
-      const idx = STATUSES.indexOf(p.status);
-      return { ...p, status: STATUSES[(idx + 1) % STATUSES.length] };
-    }));
+    const p = problems.find((x) => x.id === id);
+    if (!p) return;
+    const idx = STATUSES.indexOf(p.status);
+    persist({ ...p, status: STATUSES[(idx + 1) % STATUSES.length] });
   };
 
   const saveNote = (id) => {
-    save(problems.map((p) => p.id === id ? { ...p, notes: noteText } : p));
+    const p = problems.find((x) => x.id === id);
+    if (p) persist({ ...p, notes: noteText });
     setEditingNote(null);
   };
 
@@ -41,8 +48,10 @@ export default function NeetCode() {
     <div>
       <div className="page-header">
         <h2>💻 NeetCode 150</h2>
-        <p>{mastered} mastered · {inProgress} in progress · {150 - mastered - inProgress} not started</p>
+        <p>{mastered} mastered · {inProgress} in progress · {problems.length - mastered - inProgress} not started</p>
       </div>
+
+      {error && <div className="card mb-16" style={{ borderColor: "var(--red)", color: "var(--red)", fontSize: 13 }}>{error}</div>}
 
       {/* Progress grid — collapsible by clicking a section */}
       <div className="grid-3 mb-16">

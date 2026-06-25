@@ -26,7 +26,7 @@ public class ReminderController {
     public ResponseEntity<?> sendNow(@RequestBody Map<String, String> req) {
         try {
             emailService.sendEmail(
-                req.getOrDefault("to", "cyrrilann@gmail.com"),
+                req.getOrDefault("to", "abbadsiddiqui1@gmail.com"),
                 req.getOrDefault("subject", "Reminder"),
                 req.getOrDefault("message", "")
             );
@@ -41,10 +41,10 @@ public class ReminderController {
         try {
             String html = EmailService.baseTemplate(
                 req.getOrDefault("html", "<p>No content</p>"),
-                req.getOrDefault("subject", "CyrilHQ Reminder")
+                req.getOrDefault("subject", "InternshipTracker Reminder")
             );
             emailService.sendHtmlEmail(
-                req.getOrDefault("to", "cyrrilann@gmail.com"),
+                req.getOrDefault("to", "abbadsiddiqui1@gmail.com"),
                 req.getOrDefault("subject", "Reminder"),
                 html
             );
@@ -73,10 +73,10 @@ public class ReminderController {
                 try {
                     String html = EmailService.baseTemplate(
                         "<div style='font-size:15px;line-height:1.7;color:#e8e8f0;white-space:pre-wrap;'>" + req.getOrDefault("message", "") + "</div>",
-                        "CyrilHQ Reminder"
+                        "InternshipTracker Reminder"
                     );
                     emailService.sendHtmlEmail(
-                        req.getOrDefault("to", "cyrrilann@gmail.com"),
+                        req.getOrDefault("to", "abbadsiddiqui1@gmail.com"),
                         req.getOrDefault("subject", "Scheduled Reminder"),
                         html
                     );
@@ -94,6 +94,6 @@ public class ReminderController {
 
     @GetMapping("/health")
     public ResponseEntity<?> health() {
-        return ResponseEntity.ok(Map.of("status", "CyrilHQ backend running ✅"));
+        return ResponseEntity.ok(Map.of("status", "InternshipTracker backend running ✅"));
     }
 }

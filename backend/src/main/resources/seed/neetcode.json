@@ -1,0 +1,1352 @@
+[
+  {
+    "id": 1,
+    "section": "Arrays & Hashing",
+    "name": "Contains Duplicate",
+    "leetcode": 217,
+    "difficulty": "Easy",
+    "status": "mastered",
+    "notes": "HashMap O(n)"
+  },
+  {
+    "id": 2,
+    "section": "Arrays & Hashing",
+    "name": "Valid Anagram",
+    "leetcode": 242,
+    "difficulty": "Easy",
+    "status": "mastered",
+    "notes": "Subtract pattern — watch this"
+  },
+  {
+    "id": 3,
+    "section": "Arrays & Hashing",
+    "name": "Two Sum",
+    "leetcode": 1,
+    "difficulty": "Easy",
+    "status": "mastered",
+    "notes": "3 approaches — HashMap is O(n)"
+  },
+  {
+    "id": 4,
+    "section": "Arrays & Hashing",
+    "name": "Group Anagrams",
+    "leetcode": 49,
+    "difficulty": "Medium",
+    "status": "mastered",
+    "notes": "Sort key or count array as key"
+  },
+  {
+    "id": 5,
+    "section": "Arrays & Hashing",
+    "name": "Top K Frequent Elements",
+    "leetcode": 347,
+    "difficulty": "Medium",
+    "status": "mastered",
+    "notes": "Bucket sort approach"
+  },
+  {
+    "id": 6,
+    "section": "Arrays & Hashing",
+    "name": "Product of Array Except Self",
+    "leetcode": 238,
+    "difficulty": "Medium",
+    "status": "mastered",
+    "notes": "Prefix and suffix pass"
+  },
+  {
+    "id": 7,
+    "section": "Arrays & Hashing",
+    "name": "Valid Sudoku",
+    "leetcode": 36,
+    "difficulty": "Medium",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 8,
+    "section": "Arrays & Hashing",
+    "name": "Encode and Decode Strings",
+    "leetcode": 271,
+    "difficulty": "Medium",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 9,
+    "section": "Arrays & Hashing",
+    "name": "Longest Consecutive Sequence",
+    "leetcode": 128,
+    "difficulty": "Medium",
+    "status": "mastered",
+    "notes": "HashSet — check n-1 to find start"
+  },
+  {
+    "id": 10,
+    "section": "Two Pointers",
+    "name": "Valid Palindrome",
+    "leetcode": 125,
+    "difficulty": "Easy",
+    "status": "mastered",
+    "notes": "4 approaches — two pointer cleanest"
+  },
+  {
+    "id": 11,
+    "section": "Two Pointers",
+    "name": "Two Sum II – Input Array Is Sorted",
+    "leetcode": 167,
+    "difficulty": "Medium",
+    "status": "in progress",
+    "notes": ""
+  },
+  {
+    "id": 12,
+    "section": "Two Pointers",
+    "name": "3Sum",
+    "leetcode": 15,
+    "difficulty": "Medium",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 13,
+    "section": "Two Pointers",
+    "name": "Container With Most Water",
+    "leetcode": 11,
+    "difficulty": "Medium",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 14,
+    "section": "Two Pointers",
+    "name": "Trapping Rain Water",
+    "leetcode": 42,
+    "difficulty": "Hard",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 15,
+    "section": "Sliding Window",
+    "name": "Best Time to Buy and Sell Stock",
+    "leetcode": 121,
+    "difficulty": "Easy",
+    "status": "mastered",
+    "notes": "Track min price, update max profit"
+  },
+  {
+    "id": 16,
+    "section": "Sliding Window",
+    "name": "Longest Substring Without Repeating Characters",
+    "leetcode": 3,
+    "difficulty": "Medium",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 17,
+    "section": "Sliding Window",
+    "name": "Longest Repeating Character Replacement",
+    "leetcode": 424,
+    "difficulty": "Medium",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 18,
+    "section": "Sliding Window",
+    "name": "Permutation in String",
+    "leetcode": 567,
+    "difficulty": "Medium",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 19,
+    "section": "Sliding Window",
+    "name": "Minimum Window Substring",
+    "leetcode": 76,
+    "difficulty": "Hard",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 20,
+    "section": "Sliding Window",
+    "name": "Sliding Window Maximum",
+    "leetcode": 239,
+    "difficulty": "Hard",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 21,
+    "section": "Stack",
+    "name": "Valid Parentheses",
+    "leetcode": 20,
+    "difficulty": "Easy",
+    "status": "mastered",
+    "notes": "Stack push open, pop and match close"
+  },
+  {
+    "id": 22,
+    "section": "Stack",
+    "name": "Min Stack",
+    "leetcode": 155,
+    "difficulty": "Medium",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 23,
+    "section": "Stack",
+    "name": "Evaluate Reverse Polish Notation",
+    "leetcode": 150,
+    "difficulty": "Medium",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 24,
+    "section": "Stack",
+    "name": "Generate Parentheses",
+    "leetcode": 22,
+    "difficulty": "Medium",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 25,
+    "section": "Stack",
+    "name": "Daily Temperatures",
+    "leetcode": 739,
+    "difficulty": "Medium",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 26,
+    "section": "Stack",
+    "name": "Car Fleet",
+    "leetcode": 853,
+    "difficulty": "Medium",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 27,
+    "section": "Stack",
+    "name": "Largest Rectangle in Histogram",
+    "leetcode": 84,
+    "difficulty": "Hard",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 28,
+    "section": "Binary Search",
+    "name": "Binary Search",
+    "leetcode": 704,
+    "difficulty": "Easy",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 29,
+    "section": "Binary Search",
+    "name": "Search a 2D Matrix",
+    "leetcode": 74,
+    "difficulty": "Medium",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 30,
+    "section": "Binary Search",
+    "name": "Koko Eating Bananas",
+    "leetcode": 875,
+    "difficulty": "Medium",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 31,
+    "section": "Binary Search",
+    "name": "Find Minimum in Rotated Sorted Array",
+    "leetcode": 153,
+    "difficulty": "Medium",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 32,
+    "section": "Binary Search",
+    "name": "Search in Rotated Sorted Array",
+    "leetcode": 33,
+    "difficulty": "Medium",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 33,
+    "section": "Binary Search",
+    "name": "Time Based Key-Value Store",
+    "leetcode": 981,
+    "difficulty": "Medium",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 34,
+    "section": "Binary Search",
+    "name": "Median of Two Sorted Arrays",
+    "leetcode": 4,
+    "difficulty": "Hard",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 35,
+    "section": "Linked List",
+    "name": "Reverse Linked List",
+    "leetcode": 206,
+    "difficulty": "Easy",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 36,
+    "section": "Linked List",
+    "name": "Merge Two Sorted Lists",
+    "leetcode": 21,
+    "difficulty": "Easy",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 37,
+    "section": "Linked List",
+    "name": "Reorder List",
+    "leetcode": 143,
+    "difficulty": "Medium",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 38,
+    "section": "Linked List",
+    "name": "Remove Nth Node From End of List",
+    "leetcode": 19,
+    "difficulty": "Medium",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 39,
+    "section": "Linked List",
+    "name": "Copy List With Random Pointer",
+    "leetcode": 138,
+    "difficulty": "Medium",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 40,
+    "section": "Linked List",
+    "name": "Add Two Numbers",
+    "leetcode": 2,
+    "difficulty": "Medium",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 41,
+    "section": "Linked List",
+    "name": "Linked List Cycle",
+    "leetcode": 141,
+    "difficulty": "Easy",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 42,
+    "section": "Linked List",
+    "name": "Find the Duplicate Number",
+    "leetcode": 287,
+    "difficulty": "Medium",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 43,
+    "section": "Linked List",
+    "name": "LRU Cache",
+    "leetcode": 146,
+    "difficulty": "Medium",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 44,
+    "section": "Linked List",
+    "name": "Merge K Sorted Lists",
+    "leetcode": 23,
+    "difficulty": "Hard",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 45,
+    "section": "Linked List",
+    "name": "Reverse Nodes in K-Group",
+    "leetcode": 25,
+    "difficulty": "Hard",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 46,
+    "section": "Trees",
+    "name": "Invert Binary Tree",
+    "leetcode": 226,
+    "difficulty": "Easy",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 47,
+    "section": "Trees",
+    "name": "Maximum Depth of Binary Tree",
+    "leetcode": 104,
+    "difficulty": "Easy",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 48,
+    "section": "Trees",
+    "name": "Diameter of Binary Tree",
+    "leetcode": 543,
+    "difficulty": "Easy",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 49,
+    "section": "Trees",
+    "name": "Balanced Binary Tree",
+    "leetcode": 110,
+    "difficulty": "Easy",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 50,
+    "section": "Trees",
+    "name": "Same Tree",
+    "leetcode": 100,
+    "difficulty": "Easy",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 51,
+    "section": "Trees",
+    "name": "Subtree of Another Tree",
+    "leetcode": 572,
+    "difficulty": "Easy",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 52,
+    "section": "Trees",
+    "name": "Lowest Common Ancestor of a BST",
+    "leetcode": 235,
+    "difficulty": "Medium",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 53,
+    "section": "Trees",
+    "name": "Binary Tree Level Order Traversal",
+    "leetcode": 102,
+    "difficulty": "Medium",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 54,
+    "section": "Trees",
+    "name": "Binary Tree Right Side View",
+    "leetcode": 199,
+    "difficulty": "Medium",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 55,
+    "section": "Trees",
+    "name": "Count Good Nodes in Binary Tree",
+    "leetcode": 1448,
+    "difficulty": "Medium",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 56,
+    "section": "Trees",
+    "name": "Validate Binary Search Tree",
+    "leetcode": 98,
+    "difficulty": "Medium",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 57,
+    "section": "Trees",
+    "name": "Kth Smallest Element in a BST",
+    "leetcode": 230,
+    "difficulty": "Medium",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 58,
+    "section": "Trees",
+    "name": "Construct Binary Tree from Preorder and Inorder Traversal",
+    "leetcode": 105,
+    "difficulty": "Medium",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 59,
+    "section": "Trees",
+    "name": "Binary Tree Maximum Path Sum",
+    "leetcode": 124,
+    "difficulty": "Hard",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 60,
+    "section": "Trees",
+    "name": "Serialize and Deserialize Binary Tree",
+    "leetcode": 297,
+    "difficulty": "Hard",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 61,
+    "section": "Tries",
+    "name": "Implement Trie (Prefix Tree)",
+    "leetcode": 208,
+    "difficulty": "Medium",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 62,
+    "section": "Tries",
+    "name": "Design Add and Search Words Data Structure",
+    "leetcode": 211,
+    "difficulty": "Medium",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 63,
+    "section": "Tries",
+    "name": "Word Search II",
+    "leetcode": 212,
+    "difficulty": "Hard",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 64,
+    "section": "Heap / Priority Queue",
+    "name": "Kth Largest Element in a Stream",
+    "leetcode": 703,
+    "difficulty": "Easy",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 65,
+    "section": "Heap / Priority Queue",
+    "name": "Last Stone Weight",
+    "leetcode": 1046,
+    "difficulty": "Easy",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 66,
+    "section": "Heap / Priority Queue",
+    "name": "K Closest Points to Origin",
+    "leetcode": 973,
+    "difficulty": "Medium",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 67,
+    "section": "Heap / Priority Queue",
+    "name": "Kth Largest Element in an Array",
+    "leetcode": 215,
+    "difficulty": "Medium",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 68,
+    "section": "Heap / Priority Queue",
+    "name": "Task Scheduler",
+    "leetcode": 621,
+    "difficulty": "Medium",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 69,
+    "section": "Heap / Priority Queue",
+    "name": "Design Twitter",
+    "leetcode": 355,
+    "difficulty": "Medium",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 70,
+    "section": "Heap / Priority Queue",
+    "name": "Find Median From Data Stream",
+    "leetcode": 295,
+    "difficulty": "Hard",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 71,
+    "section": "Backtracking",
+    "name": "Subsets",
+    "leetcode": 78,
+    "difficulty": "Medium",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 72,
+    "section": "Backtracking",
+    "name": "Combination Sum",
+    "leetcode": 39,
+    "difficulty": "Medium",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 73,
+    "section": "Backtracking",
+    "name": "Permutations",
+    "leetcode": 46,
+    "difficulty": "Medium",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 74,
+    "section": "Backtracking",
+    "name": "Subsets II",
+    "leetcode": 90,
+    "difficulty": "Medium",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 75,
+    "section": "Backtracking",
+    "name": "Combination Sum II",
+    "leetcode": 40,
+    "difficulty": "Medium",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 76,
+    "section": "Backtracking",
+    "name": "Word Search",
+    "leetcode": 79,
+    "difficulty": "Medium",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 77,
+    "section": "Backtracking",
+    "name": "Palindrome Partitioning",
+    "leetcode": 131,
+    "difficulty": "Medium",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 78,
+    "section": "Backtracking",
+    "name": "Letter Combinations of a Phone Number",
+    "leetcode": 17,
+    "difficulty": "Medium",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 79,
+    "section": "Backtracking",
+    "name": "N-Queens",
+    "leetcode": 51,
+    "difficulty": "Hard",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 80,
+    "section": "Graphs",
+    "name": "Number of Islands",
+    "leetcode": 200,
+    "difficulty": "Medium",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 81,
+    "section": "Graphs",
+    "name": "Clone Graph",
+    "leetcode": 133,
+    "difficulty": "Medium",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 82,
+    "section": "Graphs",
+    "name": "Max Area of Island",
+    "leetcode": 695,
+    "difficulty": "Medium",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 83,
+    "section": "Graphs",
+    "name": "Pacific Atlantic Water Flow",
+    "leetcode": 417,
+    "difficulty": "Medium",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 84,
+    "section": "Graphs",
+    "name": "Surrounded Regions",
+    "leetcode": 130,
+    "difficulty": "Medium",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 85,
+    "section": "Graphs",
+    "name": "Rotting Oranges",
+    "leetcode": 994,
+    "difficulty": "Medium",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 86,
+    "section": "Graphs",
+    "name": "Walls and Gates",
+    "leetcode": 286,
+    "difficulty": "Medium",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 87,
+    "section": "Graphs",
+    "name": "Course Schedule",
+    "leetcode": 207,
+    "difficulty": "Medium",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 88,
+    "section": "Graphs",
+    "name": "Course Schedule II",
+    "leetcode": 210,
+    "difficulty": "Medium",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 89,
+    "section": "Graphs",
+    "name": "Redundant Connection",
+    "leetcode": 684,
+    "difficulty": "Medium",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 90,
+    "section": "Graphs",
+    "name": "Number of Connected Components in an Undirected Graph",
+    "leetcode": 323,
+    "difficulty": "Medium",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 91,
+    "section": "Graphs",
+    "name": "Graph Valid Tree",
+    "leetcode": 261,
+    "difficulty": "Medium",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 92,
+    "section": "Graphs",
+    "name": "Word Ladder",
+    "leetcode": 127,
+    "difficulty": "Hard",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 93,
+    "section": "Advanced Graphs",
+    "name": "Reconstruct Itinerary",
+    "leetcode": 332,
+    "difficulty": "Hard",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 94,
+    "section": "Advanced Graphs",
+    "name": "Min Cost to Connect All Points",
+    "leetcode": 1584,
+    "difficulty": "Medium",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 95,
+    "section": "Advanced Graphs",
+    "name": "Network Delay Time",
+    "leetcode": 743,
+    "difficulty": "Medium",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 96,
+    "section": "Advanced Graphs",
+    "name": "Swim in Rising Water",
+    "leetcode": 778,
+    "difficulty": "Hard",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 97,
+    "section": "Advanced Graphs",
+    "name": "Alien Dictionary",
+    "leetcode": 269,
+    "difficulty": "Hard",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 98,
+    "section": "Advanced Graphs",
+    "name": "Cheapest Flights Within K Stops",
+    "leetcode": 787,
+    "difficulty": "Medium",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 99,
+    "section": "1-D Dynamic Programming",
+    "name": "Climbing Stairs",
+    "leetcode": 70,
+    "difficulty": "Easy",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 100,
+    "section": "1-D Dynamic Programming",
+    "name": "Min Cost Climbing Stairs",
+    "leetcode": 746,
+    "difficulty": "Easy",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 101,
+    "section": "1-D Dynamic Programming",
+    "name": "House Robber",
+    "leetcode": 198,
+    "difficulty": "Medium",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 102,
+    "section": "1-D Dynamic Programming",
+    "name": "House Robber II",
+    "leetcode": 213,
+    "difficulty": "Medium",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 103,
+    "section": "1-D Dynamic Programming",
+    "name": "Longest Palindromic Substring",
+    "leetcode": 5,
+    "difficulty": "Medium",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 104,
+    "section": "1-D Dynamic Programming",
+    "name": "Palindromic Substrings",
+    "leetcode": 647,
+    "difficulty": "Medium",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 105,
+    "section": "1-D Dynamic Programming",
+    "name": "Decode Ways",
+    "leetcode": 91,
+    "difficulty": "Medium",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 106,
+    "section": "1-D Dynamic Programming",
+    "name": "Coin Change",
+    "leetcode": 322,
+    "difficulty": "Medium",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 107,
+    "section": "1-D Dynamic Programming",
+    "name": "Maximum Product Subarray",
+    "leetcode": 152,
+    "difficulty": "Medium",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 108,
+    "section": "1-D Dynamic Programming",
+    "name": "Word Break",
+    "leetcode": 139,
+    "difficulty": "Medium",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 109,
+    "section": "1-D Dynamic Programming",
+    "name": "Longest Increasing Subsequence",
+    "leetcode": 300,
+    "difficulty": "Medium",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 110,
+    "section": "1-D Dynamic Programming",
+    "name": "Partition Equal Subset Sum",
+    "leetcode": 416,
+    "difficulty": "Medium",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 111,
+    "section": "2-D Dynamic Programming",
+    "name": "Unique Paths",
+    "leetcode": 62,
+    "difficulty": "Medium",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 112,
+    "section": "2-D Dynamic Programming",
+    "name": "Longest Common Subsequence",
+    "leetcode": 1143,
+    "difficulty": "Medium",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 113,
+    "section": "2-D Dynamic Programming",
+    "name": "Best Time to Buy and Sell Stock with Cooldown",
+    "leetcode": 309,
+    "difficulty": "Medium",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 114,
+    "section": "2-D Dynamic Programming",
+    "name": "Coin Change II",
+    "leetcode": 518,
+    "difficulty": "Medium",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 115,
+    "section": "2-D Dynamic Programming",
+    "name": "Target Sum",
+    "leetcode": 494,
+    "difficulty": "Medium",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 116,
+    "section": "2-D Dynamic Programming",
+    "name": "Interleaving String",
+    "leetcode": 97,
+    "difficulty": "Medium",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 117,
+    "section": "2-D Dynamic Programming",
+    "name": "Longest Increasing Path in a Matrix",
+    "leetcode": 329,
+    "difficulty": "Hard",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 118,
+    "section": "2-D Dynamic Programming",
+    "name": "Distinct Subsequences",
+    "leetcode": 115,
+    "difficulty": "Hard",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 119,
+    "section": "2-D Dynamic Programming",
+    "name": "Edit Distance",
+    "leetcode": 72,
+    "difficulty": "Medium",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 120,
+    "section": "2-D Dynamic Programming",
+    "name": "Burst Balloons",
+    "leetcode": 312,
+    "difficulty": "Hard",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 121,
+    "section": "2-D Dynamic Programming",
+    "name": "Regular Expression Matching",
+    "leetcode": 10,
+    "difficulty": "Hard",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 122,
+    "section": "Greedy",
+    "name": "Maximum Subarray",
+    "leetcode": 53,
+    "difficulty": "Medium",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 123,
+    "section": "Greedy",
+    "name": "Jump Game",
+    "leetcode": 55,
+    "difficulty": "Medium",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 124,
+    "section": "Greedy",
+    "name": "Jump Game II",
+    "leetcode": 45,
+    "difficulty": "Medium",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 125,
+    "section": "Greedy",
+    "name": "Gas Station",
+    "leetcode": 134,
+    "difficulty": "Medium",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 126,
+    "section": "Greedy",
+    "name": "Hand of Straights",
+    "leetcode": 846,
+    "difficulty": "Medium",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 127,
+    "section": "Greedy",
+    "name": "Merge Triplets to Form Target Triplet",
+    "leetcode": 1899,
+    "difficulty": "Medium",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 128,
+    "section": "Greedy",
+    "name": "Partition Labels",
+    "leetcode": 763,
+    "difficulty": "Medium",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 129,
+    "section": "Greedy",
+    "name": "Valid Parenthesis String",
+    "leetcode": 678,
+    "difficulty": "Medium",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 130,
+    "section": "Intervals",
+    "name": "Insert Interval",
+    "leetcode": 57,
+    "difficulty": "Medium",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 131,
+    "section": "Intervals",
+    "name": "Merge Intervals",
+    "leetcode": 56,
+    "difficulty": "Medium",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 132,
+    "section": "Intervals",
+    "name": "Non-overlapping Intervals",
+    "leetcode": 435,
+    "difficulty": "Medium",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 133,
+    "section": "Intervals",
+    "name": "Meeting Rooms",
+    "leetcode": 252,
+    "difficulty": "Easy",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 134,
+    "section": "Intervals",
+    "name": "Meeting Rooms II",
+    "leetcode": 253,
+    "difficulty": "Medium",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 135,
+    "section": "Intervals",
+    "name": "Minimum Interval to Include Each Query",
+    "leetcode": 1851,
+    "difficulty": "Hard",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 136,
+    "section": "Math & Geometry",
+    "name": "Rotate Image",
+    "leetcode": 48,
+    "difficulty": "Medium",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 137,
+    "section": "Math & Geometry",
+    "name": "Spiral Matrix",
+    "leetcode": 54,
+    "difficulty": "Medium",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 138,
+    "section": "Math & Geometry",
+    "name": "Set Matrix Zeroes",
+    "leetcode": 73,
+    "difficulty": "Medium",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 139,
+    "section": "Math & Geometry",
+    "name": "Happy Number",
+    "leetcode": 202,
+    "difficulty": "Easy",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 140,
+    "section": "Math & Geometry",
+    "name": "Plus One",
+    "leetcode": 66,
+    "difficulty": "Easy",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 141,
+    "section": "Math & Geometry",
+    "name": "Pow(x, n)",
+    "leetcode": 50,
+    "difficulty": "Medium",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 142,
+    "section": "Math & Geometry",
+    "name": "Multiply Strings",
+    "leetcode": 43,
+    "difficulty": "Medium",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 143,
+    "section": "Math & Geometry",
+    "name": "Detect Squares",
+    "leetcode": 2013,
+    "difficulty": "Medium",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 144,
+    "section": "Bit Manipulation",
+    "name": "Single Number",
+    "leetcode": 136,
+    "difficulty": "Easy",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 145,
+    "section": "Bit Manipulation",
+    "name": "Number of 1 Bits",
+    "leetcode": 191,
+    "difficulty": "Easy",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 146,
+    "section": "Bit Manipulation",
+    "name": "Counting Bits",
+    "leetcode": 338,
+    "difficulty": "Easy",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 147,
+    "section": "Bit Manipulation",
+    "name": "Reverse Bits",
+    "leetcode": 190,
+    "difficulty": "Easy",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 148,
+    "section": "Bit Manipulation",
+    "name": "Missing Number",
+    "leetcode": 268,
+    "difficulty": "Easy",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 149,
+    "section": "Bit Manipulation",
+    "name": "Sum of Two Integers",
+    "leetcode": 371,
+    "difficulty": "Medium",
+    "status": "not started",
+    "notes": ""
+  },
+  {
+    "id": 150,
+    "section": "Bit Manipulation",
+    "name": "Reverse Integer",
+    "leetcode": 7,
+    "difficulty": "Medium",
+    "status": "not started",
+    "notes": ""
+  }
+]

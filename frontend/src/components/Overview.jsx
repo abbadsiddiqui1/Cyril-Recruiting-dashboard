@@ -1,5 +1,5 @@
-import { COMPANIES, NEETCODE_150 } from "../data/companies";
 import { useState, useEffect } from "react";
+import { companiesApi, neetcodeApi } from "../api";
 
 function daysUntil(dateStr) {
   const today = new Date();
@@ -16,15 +16,15 @@ function getUrgencyLabel(days) {
 }
 
 export default function Overview({ setActive }) {
-  const [companies, setCompanies] = useState(() => {
-    const saved = localStorage.getItem("companies");
-    return saved ? JSON.parse(saved) : COMPANIES;
-  });
+  const [companies, setCompanies] = useState([]);
+  const [neet, setNeet] = useState([]);
 
-  const [neet] = useState(() => {
-    const saved = localStorage.getItem("neetcode");
-    return saved ? JSON.parse(saved) : NEETCODE_150;
-  });
+  // Pull the live company + NeetCode state from the backend each time the
+  // overview is opened, so the snapshot reflects edits made on other tabs.
+  useEffect(() => {
+    companiesApi.list().then(setCompanies).catch(() => {});
+    neetcodeApi.list().then(setNeet).catch(() => {});
+  }, []);
 
   const applied = companies.filter((c) => c.applied).length;
   const interviews = companies.filter((c) => c.interview).length;
@@ -46,7 +46,7 @@ export default function Overview({ setActive }) {
     <div>
       <div className="page-header">
         <h2>⚡ Overview</h2>
-        <p>{today} · Keep going, Cyril.</p>
+        <p>{today} · Keep going.</p>
       </div>
 
       {/* Stats */}

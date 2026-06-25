@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { notesApi } from "../api";
 
 const TAGS = ["General", "DSA", "Career", "PathPilot", "Ideas", "Follow-up"];
 
 export default function Notes() {
-  const [notes, setNotes] = useState(() => JSON.parse(localStorage.getItem("notes") || "[]"));
+  const [notes, setNotes] = useState([]);
+  const [error, setError] = useState("");
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const [tag, setTag] = useState("General");
@@ -11,20 +13,33 @@ export default function Notes() {
   const [activeTag, setActiveTag] = useState("All");
   const [viewing, setViewing] = useState(null);
 
-  const save = (updated) => { setNotes(updated); localStorage.setItem("notes", JSON.stringify(updated)); };
+  // Load notes from the backend on mount. Newest first.
+  useEffect(() => {
+    notesApi.list()
+      .then((data) => setNotes([...data].reverse()))
+      .catch(() => setError("Couldn't load notes — is the backend running on :8080?"));
+  }, []);
 
-  const add = () => {
+  const add = async () => {
     if (!title.trim()) return;
-    const n = { id: Date.now(), title, body, tag, created: new Date().toLocaleDateString() };
-    save([n, ...notes]);
-    setTitle(""); setBody(""); setTag("General");
+    try {
+      const saved = await notesApi.create({ title, body, tag, created: new Date().toLocaleDateString() });
+      setNotes((ns) => [saved, ...ns]);
+      setTitle(""); setBody(""); setTag("General");
+    } catch { setError("Save failed — note may not be persisted."); }
   };
 
-  const del = (id) => { if (confirm("Delete note?")) { save(notes.filter((n) => n.id !== id)); if (viewing?.id === id) setViewing(null); } };
+  const del = async (id) => {
+    if (!confirm("Delete note?")) return;
+    setNotes((ns) => ns.filter((n) => n.id !== id));
+    if (viewing?.id === id) setViewing(null);
+    try { await notesApi.remove(id); }
+    catch { setError("Delete failed."); }
+  };
 
   const filtered = notes.filter((n) => {
     if (activeTag !== "All" && n.tag !== activeTag) return false;
-    if (search && !n.title.toLowerCase().includes(search.toLowerCase()) && !n.body.toLowerCase().includes(search.toLowerCase())) return false;
+    if (search && !(n.title || "").toLowerCase().includes(search.toLowerCase()) && !(n.body || "").toLowerCase().includes(search.toLowerCase())) return false;
     return true;
   });
 
@@ -34,6 +49,8 @@ export default function Notes() {
         <h2>📝 Notes</h2>
         <p>{notes.length} notes saved</p>
       </div>
+
+      {error && <div className="card mb-16" style={{ borderColor: "var(--red)", color: "var(--red)", fontSize: 13 }}>{error}</div>}
 
       <div className="grid-2 gap-16">
         {/* New note */}

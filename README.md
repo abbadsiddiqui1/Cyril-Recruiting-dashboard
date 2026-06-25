@@ -1,6 +1,6 @@
-# CyrilHQ — Your Personal Command Center
+# InternshipTracker — Your Personal Command Center
 
-> Built by [Cyril Annoh](https://www.linkedin.com/in/cyril-annoh/) · If you use this, tag me on LinkedIn for credit 🙏
+> Forked from and based on the original [Cyril-Recruiting-dashboard](https://github.com/Cyrila7/Cyril-Recruiting-dashboard).
 
 This was created to help students with summer recruitment prep instead of having to do it all in an Excel spreadsheet.
 
@@ -28,22 +28,25 @@ Built for my own Summer 2027 recruiting grind — feel free to fork and make it 
 ![NeetCode 150](screenshots/neetcode-tracker.png)
 
 ## What this isn't
-This is a personal tool, not a SaaS product. There's no multi-user login, no real database, and email scheduling is in-memory and resets if the backend restarts. If you want something more robust, fork it and build on top.
+This is a personal tool, not a SaaS product. There's no multi-user login — all data is global to whoever runs the backend. Email scheduling is still in-memory and resets if the backend restarts. If you want something more robust, fork it and build on top.
 
 Company career page links may change over time. If one breaks, search the company name + "careers" or go straight to their main careers page.
 
 ## How Data Works
-**`companies.js` is seed data, not a live source.** The first time the app loads, it copies everything into your browser's localStorage. After that, the app reads and writes from localStorage only.
+**Data lives in a real database now, served by the Spring Boot backend.** This fork replaced the old browser-`localStorage` storage with a persistent database, so your companies, NeetCode progress, notes, links, mood logs, and reminder history survive across browsers, devices, and restarts.
 
-Key things to know:
-- Editing `companies.js` and pushing it won't update your own browser until you clear localStorage and reload.
-- Adding or editing a company through the UI only saves to your local browser session, not back to the source file.
-- Email reminders do include UI-added companies since the backend reads live data, not the static file.
+- **Default DB:** [H2](https://www.h2database.com) in file mode — zero install, persists to `backend/data/internshiptracker.mv.db`. The file is created automatically on first run and is git-ignored.
+- **First run only:** the backend seeds the 97 companies, 150 NeetCode problems, and default links (from `backend/src/main/resources/seed/*.json`) into the database — but only if the tables are empty. Your edits afterward live in the DB and are never overwritten.
+- **The frontend talks to the backend over a small REST API** (`frontend/src/api.js`); each tab loads its data on open and writes changes through `/api/...` endpoints. The Vite dev server proxies `/api` to `http://localhost:8080`.
+- **`frontend/src/data/companies.js` is no longer read by the app** — it remains only as the source the seed JSON was generated from.
+- **Switching to PostgreSQL** (e.g. on Railway/Render) needs no code changes: set `DATABASE_URL`, `DATABASE_USERNAME`, and `DATABASE_PASSWORD` env vars and the backend uses them automatically (the Postgres driver is already bundled). See `backend/src/main/resources/application.properties`.
 
-**To force a re-sync after editing `companies.js`:** open DevTools (Cmd+Option+I on Mac, F12 on Windows), go to the Console tab, run `localStorage.clear()`, then refresh. This wipes all locally stored data including notes, links, and application status, so write anything important down first.
+### REST API
+`GET/POST` `/api/{resource}` and `GET/PUT/DELETE` `/api/{resource}/{id}` for each of:
+`companies`, `neetcode`, `notes`, `links`, `mood`, `reminder-log`. In dev you can inspect the DB directly at `http://localhost:8080/h2-console` (JDBC URL `jdbc:h2:file:./data/internshiptracker`, user `sa`, no password).
 
 ## No Java or Spring Boot experience?
-Don't let that stop you. Use AI (Claude, ChatGPT, whatever you've got) to help read through the code and get it running. The codebase is straightforward and well-commented. If you genuinely get stuck, message me on [LinkedIn](https://www.linkedin.com/in/cyril-annoh/) and I'll help.
+Don't let that stop you. Use AI (Claude, ChatGPT, whatever you've got) to help read through the code and get it running. The codebase is straightforward and well-commented.
 
 **Good luck on your SWE search.**
 
@@ -53,14 +56,14 @@ Don't let that stop you. Use AI (Claude, ChatGPT, whatever you've got) to help r
 
 Before running, update these to match your info:
 
-**1. Your email (most important)** — search and replace `cyrrilann@gmail.com` with your own email across:
+**1. Your email (most important)** — reminders are sent to `abbadsiddiqui1@gmail.com`. To change it, search and replace that address with your own across:
 - `backend/src/main/java/com/dashboard/controller/ReminderController.java`
 - `backend/src/main/java/com/dashboard/scheduler/WeeklyDigestScheduler.java`
 - `frontend/src/components/Reminders.jsx`
 
-**2. Your companies** — `frontend/src/data/companies.js` has 97 companies pre-loaded for a NYC CS student. Keep them as a starting point or clear them out and add your own. See "How Data Works" above if your browser doesn't reflect changes after editing this file.
+**2. Your companies** — the 97 pre-loaded companies live in `backend/src/main/resources/seed/companies.json` and are seeded into the database on first run. Add/edit/delete companies right in the UI (changes persist to the DB). To change the *initial* seed, edit that JSON before your first run, or wipe `backend/data/` to reseed from scratch.
 
-**3. Your NeetCode progress** — in the same `companies.js` file, scroll to the `NEETCODE_150` export and update each `status` field to reflect what you've already solved: `"not started"`, `"in progress"`, or `"mastered"`.
+**3. Your NeetCode progress** — just click each problem's status in the UI to cycle `"not started"` → `"in progress"` → `"mastered"`; it saves to the DB. The initial seed is `backend/src/main/resources/seed/neetcode.json`.
 
 **4. Weekly email links** — `WeeklyDigestScheduler.java` has company links specific to my targets. Swap them for yours.
 
@@ -83,7 +86,11 @@ npm run dev
 \`\`\`
 Opens at http://localhost:5173
 
-### 2. Backend (Email via Resend)
+### 2. Backend (data API + email)
+
+> **The backend is required.** This fork stores data in a database, so the app loads everything from the backend — start it first, then the frontend. On first run it creates the H2 database file under `backend/data/` and seeds the companies, NeetCode problems, and links automatically (no database to install).
+
+**Email is optional** — the app runs fine without it; only reminder *sending* needs it. To enable email:
 
 1. Sign up at [resend.com](https://resend.com) using the email you want reminders sent from/to
 2. Grab your API key from the dashboard
@@ -99,10 +106,10 @@ mvn spring-boot:run
 \`\`\`
 Runs on http://localhost:8080
 
-> **Note:** On Mac with Homebrew, you may need to run `export JAVA_HOME=/opt/homebrew/opt/openjdk@21` first. On Windows/Linux, just make sure Java 21 is on your PATH.
+> **Note (Java 21):** Apple Silicon Macs: `export JAVA_HOME=/opt/homebrew/opt/openjdk@21`. Intel Macs (Homebrew under `/usr/local`): `export JAVA_HOME=/usr/local/opt/openjdk@21`. On Windows/Linux, just make sure Java 21 is on your PATH.
 
 ### 3. Test it works
-Visit http://localhost:8080/api/reminders/health and you should get `{ "status": "CyrilHQ backend running ✅" }`
+Visit http://localhost:8080/api/reminders/health and you should get `{ "status": "InternshipTracker backend running ✅" }`
 
 ---
 
@@ -130,13 +137,13 @@ Railway auto-detects Maven and builds it. Railway blocks outbound SMTP, which is
 ---
 
 ## Data Persistence
-All data (companies, notes, links, mood) is saved in localStorage and persists across sessions in the same browser. No database required for the frontend. See "How Data Works" above for details.
+All data (companies, NeetCode progress, notes, links, mood, reminder history) is stored in a database via the Spring Boot backend and persists across browsers, devices, and restarts. Defaults to file-based H2 with zero setup; swappable to PostgreSQL via env vars. See "How Data Works" above for details.
 
 Email scheduling is in-memory. Scheduled reminders are lost if the backend restarts before they fire. Fine for a personal tool, not production-grade.
 
 ---
 
 ## License
-MIT License. You're free to use, copy, modify, and distribute this code for any purpose with no restrictions. The only requirement is that the original copyright notice stays in the code somewhere. A LinkedIn tag is appreciated but not required.
+MIT License. You're free to use, copy, modify, and distribute this code for any purpose with no restrictions. The only requirement is that the original copyright notice stays in the code somewhere.
 
-*Built by Cyril Annoh · NYC College of Technology (CUNY) · CS Student · Bronx, NY*
+*Based on the original [Cyril-Recruiting-dashboard](https://github.com/Cyrila7/Cyril-Recruiting-dashboard).*

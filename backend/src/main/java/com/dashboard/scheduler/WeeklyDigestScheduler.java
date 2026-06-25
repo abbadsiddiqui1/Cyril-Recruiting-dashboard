@@ -15,7 +15,7 @@ public class WeeklyDigestScheduler {
     @Scheduled(cron = "0 0 8 * * MON", zone = "America/New_York")
     public void sendWeeklyDigest() {
         String html = EmailService.baseTemplate(weeklyContent(), "Weekly Recruiting Digest");
-        emailService.sendHtmlEmail("cyrrilann@gmail.com", "Weekly Recruiting Digest", html);
+        emailService.sendHtmlEmail("abbadsiddiqui1@gmail.com", "Weekly Recruiting Digest", html);
         System.out.println("Weekly digest sent.");
     }
 
@@ -23,7 +23,7 @@ public class WeeklyDigestScheduler {
     @Scheduled(cron = "0 0 9 * * *", zone = "America/New_York")
     public void sendDailyNeetCode() {
         String html = EmailService.baseTemplate(dailyContent(), "Daily DSA");
-        emailService.sendHtmlEmail("cyrrilann@gmail.com", "Daily DSA Reminder", html);
+        emailService.sendHtmlEmail("abbadsiddiqui1@gmail.com", "Daily DSA Reminder", html);
         System.out.println("Daily NeetCode reminder sent.");
     }
 
