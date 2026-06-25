@@ -39,7 +39,7 @@ export default function Notes() {
 
   const filtered = notes.filter((n) => {
     if (activeTag !== "All" && n.tag !== activeTag) return false;
-    if (search && !n.title.toLowerCase().includes(search.toLowerCase()) && !n.body.toLowerCase().includes(search.toLowerCase())) return false;
+    if (search && !(n.title || "").toLowerCase().includes(search.toLowerCase()) && !(n.body || "").toLowerCase().includes(search.toLowerCase())) return false;
     return true;
   });
 
