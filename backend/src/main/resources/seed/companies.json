@@ -1134,34 +1134,6 @@
     "result": ""
   },
   {
-    "id": 83,
-    "tier": "Well-Funded Startups",
-    "company": "Intuit",
-    "role": "SWE Intern",
-    "opens": "2026-08-01",
-    "url": "https://www.intuit.com/careers/#Open-Roles",
-    "priority": 2,
-    "notes": "TurboTax/QuickBooks \u2014 Java-heavy enterprise",
-    "applied": false,
-    "oa": false,
-    "interview": false,
-    "result": ""
-  },
-  {
-    "id": 84,
-    "tier": "Well-Funded Startups",
-    "company": "Brex",
-    "role": "SWE Intern",
-    "opens": "2026-08-01",
-    "url": "https://www.brex.com/careers",
-    "priority": 2,
-    "notes": "Well-funded fintech",
-    "applied": false,
-    "oa": false,
-    "interview": false,
-    "result": ""
-  },
-  {
     "id": 85,
     "tier": "Well-Funded Startups",
     "company": "Ramp",
