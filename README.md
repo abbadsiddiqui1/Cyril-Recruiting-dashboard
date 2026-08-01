@@ -8,7 +8,7 @@ A full-stack personal dashboard for CS students in internship recruiting season.
 Built for my own Summer 2027 recruiting grind — feel free to fork and make it yours.
 
 ## Features
-- 🎯 **Career Tracker** — 97 companies pre-loaded, track Applied/OA/Interview/Result, add new companies, opening date countdown
+- 🎯 **Career Tracker** — 200+ companies pre-loaded (compiled from multiple sources, see [Data Sources](#data-sources)), track Applied/OA/Interview/Result, add new companies, opening date countdown
 - 💻 **NeetCode 150 Tracker** — Track all 150 NeetCode problems, mark mastered/in progress, add pattern notes
 - 📝 **Notes** — Capture DSA patterns, ideas, follow-ups by tag
 - 🔗 **Links** — Save important career/DSA/project links
@@ -32,11 +32,20 @@ This is a personal tool, not a SaaS product. There's no multi-user login — all
 
 Company career page links may change over time. If one breaks, search the company name + "careers" or go straight to their main careers page.
 
+## Data Sources
+The company list started as 97 hand-picked companies, then got merged with a second, actively-maintained list to get broader/fresher coverage instead of relying on one source:
+
+- **Base list (97 companies):** hand-picked across Big Tech, Fintech/Banks, NYC Startups, Well-Funded Startups, and Great Targets tiers.
+- **Merged in from [sndsh404/summer-2027-internships](https://github.com/sndsh404/summer-2027-internships):** a community-maintained list of real, currently-open Summer 2027 postings with direct apply links and posted dates. Added 107 new company/role entries (67 companies not already tracked), which introduced a new **Quant/Trading** tier since a large share of that list is quant trading firms (Optiver, Two Sigma, IMC Trading, Susquehanna, etc.).
+- **Dedup approach:** entries were matched by company name against the existing 97. Brand-new companies were merged in directly; companies that already existed in the base list but had a different specific role in the second source were *not* auto-merged — they were set aside in `DUPLICATES_TO_REVIEW.md` for manual review (to avoid guessing whether a specific req is more current than the existing placeholder entry).
+- **Known pre-existing dupes fixed:** Ramp and Brex each had duplicate entries across two tiers in the original 97; resolved to keep the Fintech/Banks tier version.
+- To pull in fresher data from that source later, re-run the same merge process (parse its README table, dedup against current company list by normalized name, insert only new companies, log the rest to a review file).
+
 ## How Data Works
 **Data lives in a real database now, served by the Spring Boot backend.** This fork replaced the old browser-`localStorage` storage with a persistent database, so your companies, NeetCode progress, notes, links, mood logs, and reminder history survive across browsers, devices, and restarts.
 
 - **Default DB:** [H2](https://www.h2database.com) in file mode — zero install, persists to `backend/data/internshiptracker.mv.db`. The file is created automatically on first run and is git-ignored.
-- **First run only:** the backend seeds the 97 companies, 150 NeetCode problems, and default links (from `backend/src/main/resources/seed/*.json`) into the database — but only if the tables are empty. Your edits afterward live in the DB and are never overwritten.
+- **First run only:** the backend seeds the 200+ companies, 150 NeetCode problems, and default links (from `backend/src/main/resources/seed/*.json`) into the database — but only if the tables are empty. Your edits afterward live in the DB and are never overwritten.
 - **The frontend talks to the backend over a small REST API** (`frontend/src/api.js`); each tab loads its data on open and writes changes through `/api/...` endpoints. The Vite dev server proxies `/api` to `http://localhost:8080`.
 - **`frontend/src/data/companies.js` is no longer read by the app** — it remains only as the source the seed JSON was generated from.
 - **Switching to PostgreSQL** (e.g. on Railway/Render) needs no code changes: set `DATABASE_URL`, `DATABASE_USERNAME`, and `DATABASE_PASSWORD` env vars and the backend uses them automatically (the Postgres driver is already bundled). See `backend/src/main/resources/application.properties`.
@@ -61,7 +70,7 @@ Before running, update these to match your info:
 - `backend/src/main/java/com/dashboard/scheduler/WeeklyDigestScheduler.java`
 - `frontend/src/components/Reminders.jsx`
 
-**2. Your companies** — the 97 pre-loaded companies live in `backend/src/main/resources/seed/companies.json` and are seeded into the database on first run. Add/edit/delete companies right in the UI (changes persist to the DB). To change the *initial* seed, edit that JSON before your first run, or wipe `backend/data/` to reseed from scratch.
+**2. Your companies** — the 200+ pre-loaded companies (see [Data Sources](#data-sources)) live in `backend/src/main/resources/seed/companies.json` and are seeded into the database on first run. Add/edit/delete companies right in the UI (changes persist to the DB). To change the *initial* seed, edit that JSON before your first run, or wipe `backend/data/` to reseed from scratch.
 
 **3. Your NeetCode progress** — just click each problem's status in the UI to cycle `"not started"` → `"in progress"` → `"mastered"`; it saves to the DB. The initial seed is `backend/src/main/resources/seed/neetcode.json`.
 
