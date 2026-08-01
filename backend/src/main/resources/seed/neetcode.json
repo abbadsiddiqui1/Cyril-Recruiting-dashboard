@@ -5,8 +5,8 @@
     "name": "Contains Duplicate",
     "leetcode": 217,
     "difficulty": "Easy",
-    "status": "mastered",
-    "notes": "HashMap O(n)"
+    "status": "not started",
+    "notes": ""
   },
   {
     "id": 2,
@@ -14,8 +14,8 @@
     "name": "Valid Anagram",
     "leetcode": 242,
     "difficulty": "Easy",
-    "status": "mastered",
-    "notes": "Subtract pattern — watch this"
+    "status": "not started",
+    "notes": ""
   },
   {
     "id": 3,
@@ -23,8 +23,8 @@
     "name": "Two Sum",
     "leetcode": 1,
     "difficulty": "Easy",
-    "status": "mastered",
-    "notes": "3 approaches — HashMap is O(n)"
+    "status": "not started",
+    "notes": ""
   },
   {
     "id": 4,
@@ -32,8 +32,8 @@
     "name": "Group Anagrams",
     "leetcode": 49,
     "difficulty": "Medium",
-    "status": "mastered",
-    "notes": "Sort key or count array as key"
+    "status": "not started",
+    "notes": ""
   },
   {
     "id": 5,
@@ -41,8 +41,8 @@
     "name": "Top K Frequent Elements",
     "leetcode": 347,
     "difficulty": "Medium",
-    "status": "mastered",
-    "notes": "Bucket sort approach"
+    "status": "not started",
+    "notes": ""
   },
   {
     "id": 6,
@@ -50,8 +50,8 @@
     "name": "Product of Array Except Self",
     "leetcode": 238,
     "difficulty": "Medium",
-    "status": "mastered",
-    "notes": "Prefix and suffix pass"
+    "status": "not started",
+    "notes": ""
   },
   {
     "id": 7,
@@ -77,8 +77,8 @@
     "name": "Longest Consecutive Sequence",
     "leetcode": 128,
     "difficulty": "Medium",
-    "status": "mastered",
-    "notes": "HashSet — check n-1 to find start"
+    "status": "not started",
+    "notes": ""
   },
   {
     "id": 10,
@@ -86,16 +86,16 @@
     "name": "Valid Palindrome",
     "leetcode": 125,
     "difficulty": "Easy",
-    "status": "mastered",
-    "notes": "4 approaches — two pointer cleanest"
+    "status": "not started",
+    "notes": ""
   },
   {
     "id": 11,
     "section": "Two Pointers",
-    "name": "Two Sum II – Input Array Is Sorted",
+    "name": "Two Sum II \u2013 Input Array Is Sorted",
     "leetcode": 167,
     "difficulty": "Medium",
-    "status": "in progress",
+    "status": "not started",
     "notes": ""
   },
   {
@@ -131,8 +131,8 @@
     "name": "Best Time to Buy and Sell Stock",
     "leetcode": 121,
     "difficulty": "Easy",
-    "status": "mastered",
-    "notes": "Track min price, update max profit"
+    "status": "not started",
+    "notes": ""
   },
   {
     "id": 16,
@@ -185,8 +185,8 @@
     "name": "Valid Parentheses",
     "leetcode": 20,
     "difficulty": "Easy",
-    "status": "mastered",
-    "notes": "Stack push open, pop and match close"
+    "status": "not started",
+    "notes": ""
   },
   {
     "id": 22,
