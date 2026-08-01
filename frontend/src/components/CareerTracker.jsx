@@ -10,12 +10,13 @@ const TIER_BADGE = {
   "Big Tech": "badge-bigtec",
   "Strong Tech": "badge-strong",
   "Fintech/Banks": "badge-fintech",
+  "Quant/Trading": "badge-fintech",
   "NYC Startups": "badge-nyc",
   "Well-Funded Startups": "badge-well",
   "Great Targets": "badge-great",
 };
 
-const TIERS = ["All", "Big Tech", "Strong Tech", "Fintech/Banks", "NYC Startups", "Well-Funded Startups", "Great Targets"];
+const TIERS = ["All", "Big Tech", "Strong Tech", "Fintech/Banks", "Quant/Trading", "NYC Startups", "Well-Funded Startups", "Great Targets"];
 const STATUSES = ["All", "Not Applied", "Applied", "OA", "Interview", "Offer", "Rejected"];
 const RESULTS = ["", "offer", "rejected", "withdrawn"];
 
