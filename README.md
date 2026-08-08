@@ -1,6 +1,6 @@
 # InternshipTracker — Your Personal Command Center
 
-> Forked from and based on the original [Cyril-Recruiting-dashboard](https://github.com/Cyrila7/Cyril-Recruiting-dashboard).
+> Forked from and based on the [original project](https://github.com/Cyrila7/Cyril-Recruiting-dashboard) this was built on top of.
 
 This was created to help students with summer recruitment prep instead of having to do it all in an Excel spreadsheet.
 
@@ -155,4 +155,4 @@ Email scheduling is in-memory. Scheduled reminders are lost if the backend resta
 ## License
 MIT License. You're free to use, copy, modify, and distribute this code for any purpose with no restrictions. The only requirement is that the original copyright notice stays in the code somewhere.
 
-*Based on the original [Cyril-Recruiting-dashboard](https://github.com/Cyrila7/Cyril-Recruiting-dashboard).*
+*Based on the [original project](https://github.com/Cyrila7/Cyril-Recruiting-dashboard).*
